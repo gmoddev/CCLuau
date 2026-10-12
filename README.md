@@ -4,13 +4,34 @@ SPDX-FileCopyrightText: 2017 The CC: Tweaked Developers
 SPDX-License-Identifier: MPL-2.0
 -->
 
+# CCLuau — Minecraft 26.3
+
+Independent, AI-assisted fork of CC: Tweaked, based on upstream `mc-26.3` at
+`a95dbe739f99e47a399d120839177e77ac861896`. Fork changes are maintained here and
+are never submitted to upstream for merging. Original licenses and attribution remain.
+
+The first goal is to establish the existing Lua APIs and functionality. Luau,
+the object/service facade and villager trade inspection are planned; they are not
+implemented. The VM will be developed or forked in a separate repository.
+
+Start with [the roadmap](docs/Roadmap.md), [existing APIs](docs/ExistingApi.md),
+[agent instructions](AGENTS.md), [project context](AIContext.md), and
+[invariants](docs/Invariants.md). Native/binary release qualification is pending.
+This is a replacement fork retaining the `computercraft` identity; do not install
+it alongside stock CC: Tweaked. No fork binaries have been released.
+
+## Upstream project and attribution
+
+The following describes the original CC: Tweaked project. Download links and
+dependency coordinates below refer to upstream, not a CCLuau release.
+
 <picture>
   <source media="(prefers-color-scheme: dark)" srcset="./doc/logo-darkmode.png">
   <source media="(prefers-color-scheme: light)" srcset="./doc/logo.png">
   <img alt="CC: Tweaked" src="./doc/logo.png">
 </picture>
 
-[![Current build status](https://github.com/cc-tweaked/CC-Tweaked/workflows/Build/badge.svg)](https://github.com/cc-tweaked/CC-Tweaked/actions "Current build status")
+[![Upstream build status](https://github.com/cc-tweaked/CC-Tweaked/workflows/Build/badge.svg)](https://github.com/cc-tweaked/CC-Tweaked/actions "Upstream build status; does not qualify this fork")
 [![Download CC: Tweaked on Modrinth](https://img.shields.io/static/v1?label=Download&color=00AF5C&logoColor=00AF5C&logo=Modrinth&message=CC:%20Tweaked)][Modrinth]
 
 CC: Tweaked is a mod for Minecraft which adds programmable computers, turtles and more to the game. A fork of the
@@ -21,7 +42,7 @@ CC: Tweaked can be installed from [Modrinth]. It runs on both [Minecraft Forge] 
 
 ## Contributing
 Any contribution is welcome, be that using the mod, reporting bugs or contributing code. If you want to get started
-developing the mod, [check out the instructions here](CONTRIBUTING.md#developing).
+developing this fork, [check out the fork instructions](CONTRIBUTING.md).
 
 ## Community
 If you need help getting started with CC: Tweaked, want to show off your latest project, or just want to chat about

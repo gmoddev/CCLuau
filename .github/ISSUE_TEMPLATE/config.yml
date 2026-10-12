@@ -1,5 +1,5 @@
-blank_issues_enabled: false
+blank_issues_enabled: true
 contact_links:
-- name: GitHub Discussions
-  url: https://github.com/cc-tweaked/CC-Tweaked/discussions
-  about: Ask questions on GitHub Discussions.
+- name: CCLuau roadmap
+  url: https://github.com/gmoddev/CCLuau/blob/main/docs/Roadmap.md
+  about: Read this fork's roadmap and implementation gates.

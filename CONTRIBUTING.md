@@ -4,11 +4,13 @@ SPDX-FileCopyrightText: 2020 The CC: Tweaked Developers
 SPDX-License-Identifier: MPL-2.0
 -->
 
-# Contributing to CC: Tweaked
-As with many open source projects, CC: Tweaked thrives on contributions from other people! This document (hopefully)
-provides an introduction as to how to get started with helping out.
+# Contributing to CCLuau
+CCLuau is an independent, AI-assisted fork for Minecraft 26.3. Contributions target
+this repository only. Read [AGENTS.md](AGENTS.md), [AIContext.md](AIContext.md), and
+[the roadmap](docs/Roadmap.md) before changing runtime behavior. We do not submit
+fork changes to upstream for merging. Original copyright and license notices remain.
 
-If you've any other questions, [just ask the community][community] or [open an issue][new-issue].
+For fork bugs and proposals, [open an issue][new-issue].
 
 ## Table of Contents
  - [Reporting issues](#reporting-issues)
@@ -22,7 +24,8 @@ If you have a bug, suggestion, or other feedback, the best thing to do is [file 
 use the issue templates - they provide a useful hint on what information to provide.
 
 ## Translations
-Translations are managed through [CrowdIn], an online interface for managing language strings.
+Upstream translations originated through [CrowdIn]. Submit fork translation changes here;
+this fork does not publish to the upstream translation project.
 
 ## Setting up a development environment
 In order to develop CC: Tweaked, you'll need to download the source code and then run it.
@@ -34,29 +37,30 @@ In order to develop CC: Tweaked, you'll need to download the source code and the
 
  - Download CC: Tweaked's source code:
    ```
-   git clone https://github.com/cc-tweaked/CC-Tweaked.git
-   cd CC-Tweaked
+   git clone --branch main https://github.com/gmoddev/CCLuau.git
+   cd CCLuau
    ```
 
  - Build CC: Tweaked with `./gradlew build`. This will be very slow the first time it runs, as it needs to download a
    lot of dependencies (and decompile Minecraft several times). Subsequent runs should be much faster!
 
- - You're now ready to start developing CC: Tweaked. Running `./gradlew :forge:runClient` or
-   `./gradle :fabric:runClient` will start Minecraft under Forge and Fabric respectively.
+ - For explicitly requested interactive development, `./gradlew :forge:runClient` or
+   `./gradlew :fabric:runClient` starts Minecraft under NeoForge and Fabric respectively.
+   Prefer headless qualification while establishing the baseline.
 
 If you want to run CC:T in a normal Minecraft instance, run `./gradlew assemble` and copy the `.jar` from
 `projects/forge/build/libs` (for Forge) or `projects/fabric/build/libs` (for Fabric).
 
 ## Developing CC: Tweaked
-Before making any major changes to CC: Tweaked, I'd recommend starting opening an issue or starting a discussion on
-GitHub first. It's often helpful to discuss features before spending time developing them!
+Record major design decisions and qualification evidence in this fork's documentation.
+The first goal is the existing API and behavior baseline, before Luau integration.
 
 Once you're ready to start programming, have a read of the [the architecture document][architecture] first. While it's
 not a comprehensive document, it gives a good hint of where you should start looking to make your changes. As always, if
 you're not sure, [do ask the community][community]!
 
-Generative AI contributions are *not* welcome. PRs containing, or suspected of containing, code output by a generative
-AI model will be immediately rejected.
+AI-assisted work is accepted in this fork. Contributors must review generated changes,
+verify relevant behavior, and preserve source provenance and license notices.
 
 ### Testing
 When making larger changes, it may be useful to write a test to make sure your code works as expected.
@@ -102,7 +106,7 @@ When writing long-form documentation (such as the guides in [doc/guides](doc/gui
 narrative. Think of what you want the user to learn or achieve, then start introducing a simple concept, and then talk
 about how you can build on that until you've covered everything!
 
-[new-issue]: https://github.com/cc-tweaked/CC-Tweaked/issues/new/choose "Create a new issue"
+[new-issue]: https://github.com/gmoddev/CCLuau/issues/new/choose "Create a fork issue"
 [community]: README.md#community "Get in touch with the community."
 [Adoptium]: https://adoptium.net/temurin/releases?version=25 "Download OpenJDK 25"
 [illuaminate]: https://github.com/SquidDev/illuaminate/ "Illuaminate on GitHub"
