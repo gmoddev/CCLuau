@@ -245,14 +245,15 @@ rebuild reproducibility and cross-platform execution were not tested. Compiler
 deprecation/classfile warnings remain in inherited code/dependencies. No build or
 game process remains running; no interactive Minecraft client was launched.
 
-## M2 prerequisites and limits
+## M1 remaining limits and M2 design-only qualification
 
-M1's required execution-critical baseline passes, but overall M1 remains PARTIAL;
-the implementation of M2 has not begun. Resolve the optional failures or explicitly
-approve a reduced qualification scope before promoting M1 to fully qualified.
-Further runtime design should use task_complete and the actual program-entry
-contracts verified here. Before M2 implementation, explicitly decide the intended
-API/device compatibility scope and separate VM repository/backend/ABI ownership.
+M1's required execution-critical baseline passes, but overall M1 remains PARTIAL.
+Resolve the optional failures or explicitly approve a reduced qualification scope
+before promoting M1 to fully qualified. M2 is documentation/research only; its
+backend and ABI decisions do **not** resolve M1's optional failures or implement
+any runtime. Further integration must use task_complete and the actual
+program-entry contracts verified here. API/device compatibility scope remains a
+separate pre-M4/M6 qualification gate.
 
 Before M4 integration, close the material remaining gaps: stale main-thread
 results at reboot/unload; event/command pressure and cancellation; all returned
@@ -262,4 +263,35 @@ state and full isolated server/world restart migration. The current persistence
 probes prove on-disk core filesystem continuity and NBT disk/fresh-entity round
 trips, not a complete world restart. Keep the 15 skipped cases explicit. M3 still
 requires standalone native interruption, allocator, marshalling and lifecycle
-qualification before any native backend is integrated. Do not start M2 automatically.
+qualification before any native backend is integrated. M2 was explicitly authorized as a static design task on 2026-10-15. Do not
+start M3/M4 automatically.
+
+## M2 architecture decision evidence — 2026-10-15
+
+**Verdict: PARTIAL (static design, not executable qualification).** Source
+branch m1-baseline-qualification at review baseline
+1560215e5b66d1d7efebcba4bd14651856f48196. The written M2 output is the
+updated [Architecture/Runtime.md](Architecture/Runtime.md) with the corresponding
+[roadmap](Roadmap.md), [invariants](Invariants.md),
+[license inventory](LicenseInventory.md) and AIContext.md. No new VM repository,
+native implementation, JNI code, Minecraft integration, loader execution or
+binary distribution was performed for M2. M1's earlier evidence and failures
+are not retested and remain unchanged.
+
+| Claim / design finding | Evidence level | Source / unresolved obligation |
+| --- | --- | --- |
+| Existing split: Cobalt BIOS/shell, managed child only | VERIFIED M1 STATIC + EXECUTABLE BASELINE | [ComputerExecutor](../projects/core/src/main/java/dan200/computercraft/core/computer/ComputerExecutor.java), [CobaltLuaMachine](../projects/core/src/main/java/dan200/computercraft/core/lua/CobaltLuaMachine.java), ProgramEntry.md and M1 probes |
+| Task completion spelling task_complete, **not** inherited Javadoc task_completed | VERIFIED SOURCE + M1 EXECUTABLE | [LuaContext](../projects/core/src/main/java/dan200/computercraft/core/computer/LuaContext.java) and [TaskCallback](../projects/core-api/src/main/java/dan200/computercraft/api/lua/TaskCallback.java); M1 event probe |
+| Main-thread task callbacks may arrive after generation shutdown | RISK FROM STATIC REVIEW, NOT EXECUTABLE RACE PROOF | LuaContext queued Runnable and [GuardedLuaContext](../projects/core/src/main/java/dan200/computercraft/core/computer/GuardedLuaContext.java); prove admission/pre-effect/completion fencing in M4 |
+| Official Luau compiler/VM, MIT, CMake and sandbox | UPSTREAM STATIC SOURCE REVIEW | [README](https://github.com/luau-lang/luau/blob/8387cfb461b38ce09e37c1e4c2811538ef1bf5cb/README.md), [LICENSE](https://github.com/luau-lang/luau/blob/8387cfb461b38ce09e37c1e4c2811538ef1bf5cb/LICENSE.txt), [CMake](https://github.com/luau-lang/luau/blob/8387cfb461b38ce09e37c1e4c2811538ef1bf5cb/CMakeLists.txt), [C API](https://luau.org/api/) |
+| Yieldable C functions, continuation lifetimes, unsafe non-yieldable contexts | UPSTREAM DOCS/SOURCE, **M3 UNTESTED** | [Luau API](https://luau.org/api/), [VM lua.h](https://github.com/luau-lang/luau/blob/8387cfb461b38ce09e37c1e4c2811538ef1bf5cb/VM/include/lua.h) and [ldo.cpp](https://github.com/luau-lang/luau/blob/8387cfb461b38ce09e37c1e4c2811538ef1bf5cb/VM/src/ldo.cpp) |
+| Hard memory/CPU/instruction/compilation termination | **NOT PROVEN** | [Luau security policy](https://github.com/luau-lang/luau/security/policy) disclaims termination/resource-exhaustion guarantees; M3 allocator/interrupt/OS helper tests needed |
+| Per-session checked handles, host messages, copied values and 1,000 lifecycle target | DESIGNED, **NOT EXECUTED** | ABI v1 and M3 matrix in Runtime.md; all Windows/Linux x64 gates pending |
+| Fatal native crash cannot be caught safely by Java exceptions | ARCHITECTURE RISK, **NO CONTAINMENT PROOF** | M3 isolated-helper injected native abort/deadlock and survival test mandatory |
+| CCPL §5 mixed-license dependency and MIT Luau | LICENSE TEXT VERIFIED, **LEGAL INTERPRETATION OPEN** | [CCPL](../LICENSES/LicenseRef-CCPL.txt), [REUSE.toml](../REUSE.toml), LicenseInventory.md; neither linking nor distribution is cleared |
+
+The upstream Luau master SHA 8387cfb461b38ce09e37c1e4c2811538ef1bf5cb
+is a **research observation only**. M3 must select and qualify a single frozen
+compiler+VM SHA on both platforms. No runtime metric or safety status in the
+proposed M3 budget table is a measured result. Preserve stock optional GameTest
+failures and the 15 skipped non-GameTest cases when reporting M2 or M3 status.
