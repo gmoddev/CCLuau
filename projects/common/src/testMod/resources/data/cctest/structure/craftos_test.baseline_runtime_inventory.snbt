@@ -1,0 +1,15 @@
+{
+    DataVersion: 2975,
+    size: [5, 5, 5],
+    data: [
+        {pos: [1, 1, 1], state: "computercraft:computer_normal{facing:north,state:on}", nbt: {ComputerId: 0, Label: "craftos_test.baseline_runtime_inventory.normal", On: 1b, id: "computercraft:computer_normal"}},
+        {pos: [3, 1, 1], state: "computercraft:computer_advanced{facing:north,state:on}", nbt: {ComputerId: 0, Label: "craftos_test.baseline_runtime_inventory.advanced", On: 1b, id: "computercraft:computer_advanced"}},
+        {pos: [1, 1, 3], state: "computercraft:turtle_normal{facing:north,waterlogged:false}", nbt: {ComputerId: 0, Label: "craftos_test.baseline_runtime_inventory.turtle", On: 1b, Fuel: 80, id: "computercraft:turtle_normal"}}
+    ],
+    entities: [],
+    palette: [
+        "computercraft:computer_normal{facing:north,state:on}",
+        "computercraft:computer_advanced{facing:north,state:on}",
+        "computercraft:turtle_normal{facing:north,waterlogged:false}"
+    ]
+}

@@ -40,7 +40,9 @@ import net.minecraft.core.BlockPos
 import net.minecraft.core.HolderLookup
 import net.minecraft.core.registries.Registries
 import net.minecraft.gametest.framework.GameTestHelper
+import net.minecraft.nbt.NbtIo
 import net.minecraft.resources.Identifier
+import net.minecraft.util.ProblemReporter
 import net.minecraft.world.entity.EntityType
 import net.minecraft.world.entity.EntityTypes
 import net.minecraft.world.entity.item.PrimedTnt
@@ -55,16 +57,47 @@ import net.minecraft.world.level.block.FenceBlock
 import net.minecraft.world.level.block.entity.SignBlockEntity
 import net.minecraft.world.level.block.entity.SignTextSlot
 import net.minecraft.world.level.block.state.properties.BlockStateProperties
+import net.minecraft.world.level.storage.TagValueInput
 import org.hamcrest.MatcherAssert.assertThat
 import org.hamcrest.Matchers.array
 import org.hamcrest.Matchers.instanceOf
 import org.junit.jupiter.api.Assertions.*
+import java.nio.file.Files
+import java.nio.file.Path
 import java.util.*
 import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.time.Duration.Companion.milliseconds
 
 class Turtle_Test {
+    /** Round-trip actual persisted block data through disk and a fresh block entity. */
+    @Suppress("ktlint:standard:property-naming")
+    @GameTest(template = "turtle_test.baseline_queue")
+    fun Baseline_saved_state_roundtrip(Helper: GameTestHelper) = Helper.immediate {
+        val Position = BlockPos(2, 1, 2)
+        val Original = Helper.getBlockEntity(Position, TurtleBlockEntity::class.java)
+        val Registries = Helper.level.registryAccess()
+        val Saved = Original.saveWithoutMetadata(Registries)
+        Saved.putInt("Slot", 5)
+        Saved.putLong("Capacity", 800000)
+        Saved.putBoolean("On", true)
+        val Directory = Files.createDirectories(Path.of("build", "m1-persistence"))
+        val File = Files.createTempFile(Directory, "Turtle-", ".nbt")
+        NbtIo.write(Saved, File)
+        val Reloaded = requireNotNull(NbtIo.read(File))
+        val Restored = requireNotNull(ModRegistry.BlockEntities.TURTLE_NORMAL.get().create(Position, Original.blockState))
+        Restored.loadAdditional(TagValueInput.create(ProblemReporter.DISCARDING, Registries, Reloaded))
+        assertEquals(31, Restored.computerID)
+        assertEquals("turtle_test.baseline_queue", Restored.label)
+        assertEquals(80, Restored.access.fuelLevel)
+        assertEquals(5, Restored.access.selectedSlot)
+        assertTrue(Restored.getItem(0).`is`(Items.DIRT))
+        assertEquals(32, Restored.getItem(0).count)
+        val SavedAgain = Restored.saveWithoutMetadata(Registries)
+        assertEquals(Reloaded, SavedAgain, "All serialized fields must survive a disk/fresh-entity round trip")
+    }
+
     /** Pin the existing queue's >16 guard and FIFO execution without changing it. */
+    @Suppress("ktlint:standard:property-naming")
     @GameTest(timeoutTicks = 400)
     fun Baseline_queue(Helper: GameTestHelper) = Helper.sequence {
         val Executed = CopyOnWriteArrayList<Int>()
@@ -80,13 +113,16 @@ class Turtle_Test {
                 assertNotNull(Accepted.callback, "Each of the first 17 queued commands should be accepted")
             }
             val Rejected = Brain.executeCommand {
-                fail("Rejected command must never execute")
+                fail<Unit>("Rejected command must never execute")
                 TurtleCommandResult.success()
             }
-            assertArrayEquals(arrayOf(false, "Too many ongoing turtle commands"), Rejected.result)
+            assertArrayEquals(arrayOf<Any>(false, "Too many ongoing turtle commands"), Rejected.result)
         }
-        thenWaitUntil { assertEquals((0..16).toList(), Executed) }
+        thenWaitUntil {
+            if (Executed.size < 17) Helper.abort("[Baseline:Queue] Waiting for 17 commands, observed ${Executed.size}")
+        }
         thenExecute {
+            assertEquals((0..16).toList(), Executed)
             val Device = Helper.getBlockEntity(Position, TurtleBlockEntity::class.java)
             assertEquals(31, Device.computerID)
             assertEquals("turtle_test.baseline_queue", Device.label)

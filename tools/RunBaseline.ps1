@@ -59,8 +59,10 @@ $Process = New-Object Diagnostics.Process
 $Process.StartInfo = $StartInfo
 $Timer = [Diagnostics.Stopwatch]::StartNew()
 [void]$Process.Start()
-$Output = $Process.StandardOutput.ReadToEndAsync()
-$Errors = $Process.StandardError.ReadToEndAsync()
+$OutputFile = [IO.File]::Open("$Prefix.stdout.log", [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::Read)
+$ErrorFile = [IO.File]::Open("$Prefix.stderr.log", [IO.FileMode]::CreateNew, [IO.FileAccess]::Write, [IO.FileShare]::Read)
+$Output = $Process.StandardOutput.BaseStream.CopyToAsync($OutputFile)
+$Errors = $Process.StandardError.BaseStream.CopyToAsync($ErrorFile)
 $TimedOut = -not $Process.WaitForExit($TimeoutMinutes * 60000)
 if ($TimedOut) {
     # Terminate only the tree rooted at this runner's directly created process.
@@ -81,10 +83,31 @@ if ($TimedOut) {
 }
 $Process.WaitForExit()
 $Timer.Stop()
-$Output.Result | Set-Content -LiteralPath "$Prefix.stdout.log" -Encoding UTF8
-$Errors.Result | Set-Content -LiteralPath "$Prefix.stderr.log" -Encoding UTF8
+[void]$Output.GetAwaiter().GetResult()
+[void]$Errors.GetAwaiter().GetResult()
+$OutputFile.Dispose()
+$ErrorFile.Dispose()
 $ExitCode = if ($TimedOut) { 124 } else { $Process.ExitCode }
 $Process.Dispose()
+
+$ArtifactRoot = "C:\Sandbox\Codex\Artifacts\CCLuau\$RunId\$Stamp-$Stage"
+New-Item -ItemType Directory -Force -Path $ArtifactRoot | Out-Null
+foreach ($Project in Get-ChildItem -LiteralPath (Join-Path $Workspace 'projects') -Directory) {
+    $Results = Join-Path $Project.FullName 'build\test-results'
+    if (Test-Path -LiteralPath $Results) {
+        Copy-Item -LiteralPath $Results -Destination (Join-Path $ArtifactRoot $Project.Name) -Recurse
+    }
+    if ($Stage -in @('Core', 'Loaders')) {
+        $Libraries = Join-Path $Project.FullName 'build\libs'
+        if (Test-Path -LiteralPath $Libraries) {
+            $JarOutput = Join-Path $ArtifactRoot "$($Project.Name)-jars"
+            New-Item -ItemType Directory -Force -Path $JarOutput | Out-Null
+            Get-ChildItem -LiteralPath $Libraries -Filter '*.jar' | Copy-Item -Destination $JarOutput
+        }
+    }
+}
+$Inventory = Join-Path $Workspace 'projects\core\build\tmp\testFiles\baseline\CoreRuntimeInventory.json'
+if (Test-Path -LiteralPath $Inventory) { Copy-Item -LiteralPath $Inventory -Destination $ArtifactRoot }
 
 Push-Location -LiteralPath $Workspace
 try {
@@ -109,6 +132,7 @@ try {
     ElapsedSeconds = $Timer.Elapsed.TotalSeconds
     Stdout = "$Prefix.stdout.log"
     Stderr = "$Prefix.stderr.log"
+    ArtifactRoot = $ArtifactRoot
 } | ConvertTo-Json -Depth 4 | Set-Content -LiteralPath "$Prefix.json" -Encoding UTF8
 Write-Output "[Baseline:Runner] $Stage exit=$ExitCode seconds=$($Timer.Elapsed.TotalSeconds) metadata=$Prefix.json"
 Get-Content -LiteralPath "$Prefix.stdout.log" -Tail 20

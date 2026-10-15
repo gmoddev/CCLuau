@@ -18,6 +18,8 @@ def Validate(Inventory, Rows):
         "RedstoneAPI": "redstone", "RedstoneMethods": "redstone",
         "PeripheralAPI": "peripheral", "HTTPAPI": "http",
     }
+    if Inventory.get("Device") == "Turtle":
+        Owners["TurtleAPI"] = "turtle"
     Expected = {Name: set() for Name in Owners.values()}
     for Row in Rows:
         if Row["Class"] in Owners:
@@ -34,7 +36,7 @@ def Validate(Inventory, Rows):
         Matched += len(Methods & Actual)
     return {
         "Status": "PASS" if not Missing else "PARTIAL",
-        "Scope": "Core API names only; signatures, behaviors, loader/device APIs and handles excluded",
+        "Scope": "Observed core API names and TurtleAPI when Device=Turtle; signatures, behavior, other devices and handles excluded",
         "Matched": Matched,
         "Missing": Missing,
         "ObservedCounts": {Name: len(Methods) for Name, Methods in sorted(Inventory["Apis"].items())},

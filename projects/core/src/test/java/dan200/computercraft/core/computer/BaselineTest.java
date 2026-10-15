@@ -22,10 +22,13 @@ import org.junit.jupiter.api.Timeout;
 import org.junit.jupiter.api.io.TempDir;
 
 import java.io.IOException;
+import java.nio.channels.SeekableByteChannel;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.nio.file.OpenOption;
 import java.nio.file.Path;
 import java.util.List;
+import java.util.Set;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -74,7 +77,7 @@ public class BaselineTest {
             assert(os.run({}, 'Failure.lua') == false)
             assert(shell.execute('Failure.lua') == false)
             assert(shell.run('Child.lua "arg 1" arg2') == true)
-            """, Computer -> Computer.addApi(Probe), 10);
+            """, Device -> Device.addApi(Probe), 10);
         assertEquals(1, Probe.Snapshots.size());
         var Output = TestFiles.get("baseline/CoreRuntimeInventory.json");
         Files.createDirectories(Output.getParent());
@@ -86,22 +89,32 @@ public class BaselineTest {
     @Test
     public void EventFilteringTerminationAndMainThreadCalls() {
         var Probe = new BaselineProbe();
-        ComputerBootstrap.run("""
-            os.queueEvent('BaselineIgnored', 'discarded')
-            os.queueEvent('BaselineWanted', 42, nil, 'tail')
-            local Event = table.pack(os.pullEvent('BaselineWanted'))
-            assert(Event.n == 4 and Event[1] == 'BaselineWanted' and Event[2] == 42)
-            assert(Event[3] == nil and Event[4] == 'tail')
-            os.queueEvent('terminate')
-            local Ok, Reason = pcall(os.pullEvent, 'BaselineNever')
-            assert(not Ok and Reason == 'Terminated')
-            os.queueEvent('terminate')
-            assert(os.pullEventRaw('BaselineNever') == 'terminate')
-            assert(baseline.OnMainThread() == 'MainThread')
-            local TaskId = baseline.QueueMainThread()
-            local Name, Id, Success, Result = os.pullEvent('task_completed')
-            assert(Name == 'task_completed' and Id == TaskId and Success and Result == 'Queued')
-            """, Computer -> Computer.addApi(Probe), 10);
+        try {
+            ComputerBootstrap.run("""
+                baseline.Capture('BeforeEvents')
+                os.queueEvent('BaselineIgnored', 'discarded')
+                os.queueEvent('BaselineWanted', 42, nil, 'tail')
+                local Event = table.pack(os.pullEvent('BaselineWanted'))
+                assert(Event.n == 4 and Event[1] == 'BaselineWanted' and Event[2] == 42)
+                assert(Event[3] == nil and Event[4] == 'tail')
+                baseline.Capture('AfterFilteredEvent')
+                os.queueEvent('terminate')
+                local Ok, Reason = pcall(os.pullEvent, 'BaselineNever')
+                assert(not Ok and Reason == 'Terminated')
+                baseline.Capture('AfterTerminate')
+                os.queueEvent('terminate')
+                assert(os.pullEventRaw('BaselineNever') == 'terminate')
+                baseline.Capture('AfterRawTerminate')
+                assert(baseline.OnMainThread() == 'MainThread')
+                baseline.Capture('AfterMainThread')
+                local TaskId = baseline.QueueMainThread()
+                local Name, Id, Success, Result = os.pullEvent('task_complete')
+                assert(Name == 'task_complete' and Id == TaskId and Success and Result == 'Queued')
+                baseline.Capture('AfterQueuedTask')
+                """, Device -> Device.addApi(Probe), 10);
+        } catch (AssertionError Failure) {
+            throw new AssertionError("[Baseline:Events] Reached " + Probe.Snapshots, Failure);
+        }
         assertEquals(2, Probe.MainThreadCalls.get());
         assertEquals(1, Probe.Stops.get());
     }
@@ -128,11 +141,27 @@ public class BaselineTest {
             """, StandardCharsets.UTF_8);
         for (var Boot = 1; Boot <= 2; Boot++) {
             var Probe = new BaselineProbe();
-            ComputerBootstrap.run(new WritableFileMount(Root.toFile(), 100000), Computer -> Computer.addApi(Probe), 10);
+            ComputerBootstrap.run(new WritableFileMount(Root.toFile(), 100000), Device -> Device.addApi(Probe), 10);
             assertEquals(Integer.toString(Boot), Files.readString(Root.resolve("Boots.txt")));
             assertEquals(1, Probe.Starts.get());
             assertEquals(1, Probe.Stops.get());
         }
+    }
+
+    @Test
+    public void ShutdownClosesUnclosedFilesystemHandles(@TempDir Path Root) throws IOException {
+        Files.writeString(Root.resolve("startup.lua"), """
+            local File = assert(fs.open('Unclosed.bin', 'wb'))
+            File.write('baseline')
+            _G.BaselineOpenHandle = File
+            assertion.assert(true)
+            os.shutdown()
+            """, StandardCharsets.UTF_8);
+        var Mount = new TrackingMount(Root);
+        ComputerBootstrap.run(Mount, Device -> { }, 10);
+        assertFalse(Mount.Channels.isEmpty(), "The fixture must exercise a real mounted channel");
+        for (var Channel : Mount.Channels) assertFalse(Channel.isOpen(), "Shutdown must close mounted channels");
+        assertEquals("baseline", Files.readString(Root.resolve("Unclosed.bin")));
     }
 
     @Test
@@ -178,6 +207,21 @@ public class BaselineTest {
         } finally {
             Device.unload();
             assertTrue(Context.close(5, TimeUnit.SECONDS), "Computer workers must terminate");
+        }
+    }
+
+    private static class TrackingMount extends WritableFileMount {
+        final List<SeekableByteChannel> Channels = new CopyOnWriteArrayList<>();
+
+        TrackingMount(Path Root) {
+            super(Root.toFile(), 100000);
+        }
+
+        @Override
+        public SeekableByteChannel openFile(String Path, Set<OpenOption> Options) throws IOException {
+            var Channel = super.openFile(Path, Options);
+            Channels.add(Channel);
+            return Channel;
         }
     }
 

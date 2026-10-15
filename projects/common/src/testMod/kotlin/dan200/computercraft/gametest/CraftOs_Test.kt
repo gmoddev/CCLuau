@@ -11,6 +11,14 @@ import dan200.computercraft.gametest.api.thenComputerOk
 import net.minecraft.gametest.framework.GameTestHelper
 
 class CraftOs_Test {
+    /** Capture exports from real Cobalt boots on normal/advanced computers and a turtle. */
+    @GameTest(timeoutTicks = Timeouts.COMPUTER_TIMEOUT)
+    fun Baseline_runtime_inventory(Helper: GameTestHelper) = Helper.sequence {
+        thenComputerOk("normal")
+        thenComputerOk("advanced")
+        thenComputerOk("turtle")
+    }
+
     /**
      * Sends a rednet message to another a computer and back again.
      */

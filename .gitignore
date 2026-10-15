@@ -20,6 +20,9 @@
 /projects/*/run
 /projects/*/logs
 
+# Fabric JUnit's generated processed-mod cache
+/projects/*/.fabric/
+
 *.ipr
 *.iws
 *.iml

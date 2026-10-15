@@ -5,10 +5,12 @@
 """Test the census validator's failure handling with synthetic data, not a VM."""
 
 import csv
+import tempfile
 import unittest
 from pathlib import Path
 
 from ValidateRuntimeInventory import Validate
+from SummarizeTests import GetSummary
 
 
 class RuntimeInventoryTest(unittest.TestCase):
@@ -38,6 +40,29 @@ class RuntimeInventoryTest(unittest.TestCase):
         with self.subTest("empty census cannot produce a vacuous pass"):
             with self.assertRaises(ValueError):
                 Validate({"Apis": Apis}, [])
+        with self.subTest("a turtle profile must include the registered turtle methods"):
+            Result = Validate({"Device": "Turtle", "Apis": Apis}, Rows)
+            self.assertIn("forward", Result["Missing"]["turtle"])
+
+
+class TestReportAudit(unittest.TestCase):
+    def runTest(self):
+        with tempfile.TemporaryDirectory() as Directory:
+            Report = Path(Directory) / "Report.xml"
+            with self.subTest("empty report cannot pass"):
+                Report.write_text("<testsuite/>", encoding="utf-8")
+                self.assertEqual("BLOCKED", GetSummary(Report)["Status"])
+            Report.write_text('<testsuite><testcase name="A"><skipped message="optional failed"/></testcase></testsuite>', encoding="utf-8")
+            with self.subTest("JUnit skipped remains unexecuted coverage"):
+                Result = GetSummary(Report)
+                self.assertEqual("PARTIAL", Result["Status"])
+                self.assertEqual(1, len(Result["Skipped"]))
+                self.assertFalse(Result["OptionalFailures"])
+            with self.subTest("GameTest skipped means an optional failure, never a pass"):
+                Result = GetSummary(Report, GameTest=True)
+                self.assertEqual("PARTIAL", Result["Status"])
+                self.assertEqual(0, Result["Passed"])
+                self.assertEqual(1, len(Result["OptionalFailures"]))
 
 
 if __name__ == "__main__":
