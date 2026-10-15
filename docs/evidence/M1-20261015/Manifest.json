@@ -15,12 +15,13 @@
   },
   "EvidenceHashes": {
     "01-CoreBaseline.json": "93867f8491265d803a15f3d9100915218e4a244cbae3f19351ce72a640958094",
-    "01-CoreBaseline.log": "c0fe72ffce3774f7e8d53be29080850bebc54ded3ad6c407f59062d428905da8",
+    "01-CoreBaseline.log": "3cc12424e7f1e1e40694705dafd22e67985b256f3bce398590617ca6e684c649",
     "20261015T072645061Z-Core.json": "e5ba8239a20da26d061c018f5b0ebd37f02535369d1fe69c7bb79b531e2fdd53",
-    "20261015T072645061Z-Core.stderr.log": "c4a8dcf55f87955ac9251bfd9d83c375771798ac15fd395084b83f1024885185",
-    "20261015T072645061Z-Core.stdout.log": "6b77c5255fd558168c78f79f8dcd66f190e99114d2f28799a3ebbf07b37e43cc",
+    "20261015T072645061Z-Core.stderr.log": "b4009ba63014bec8573b3c25a0c7eb2629347e881e82123f16ef07182c31afb9",
+    "20261015T072645061Z-Core.stdout.log": "1bb69f77aa034bc27a15322a516e6e991ea8b6374f6cb27e1fa6441ea9be104b",
     "Environment.json": "57802df9ef83f2b3c657fe318503d22b9c3c01fe8611442b2f5617933f9fb39d",
-    "LocalChecks.json": "c175507b17d18d134ad68cffb8fbf4afa6242e35b7e8f1e354930197b71fe3c5"
+    "LocalChecks.json": "c175507b17d18d134ad68cffb8fbf4afa6242e35b7e8f1e354930197b71fe3c5",
+    "RawRemoteHashes.json": "97ae4ab4b46b4ba87395127870d6adb3ff6ed0ab23b4724b552740feb9bc10c1"
   },
-  "EvidenceEncoding": "UTF-8; original PowerShell UTF-16/BOM text transcoded losslessly for readability"
+  "EvidenceEncoding": "UTF-8, normalized trailing whitespace; original bytes retained on worker and hashed in RawRemoteHashes.json"
 }

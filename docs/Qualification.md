@@ -54,8 +54,10 @@ started successfully. All build attempts used two workers and a headless JVM.
 
 Prepared probes/tooling are committed at `70a3f7444`; they have not compiled or
 executed. [Manifest.json](evidence/M1-20261015/Manifest.json) records full source
-commit and SHA-256 hashes for the prepared files and captured evidence. Original
-PowerShell UTF-16/BOM text was losslessly transcoded to UTF-8 for readable diffs.
+commit and SHA-256 hashes for the prepared files and captured evidence. Copied
+PowerShell text was transcoded to UTF-8 and trailing whitespace normalized for
+readable diffs. Original bytes remain on the worker; their hashes are recorded
+in [RawRemoteHashes.json](evidence/M1-20261015/RawRemoteHashes.json).
 
 Persistent paths (all retained for incremental retries):
 

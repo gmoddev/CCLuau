@@ -12,4 +12,3 @@ Unable to download toolchain matching the requirements ({languageVersion=25, ven
 > Run with --info or --debug option to get more log output.
 > Run with --scan to get full insights from a Build Scan (powered by Develocity).
 > Get more help at https://help.gradle.org.
-
