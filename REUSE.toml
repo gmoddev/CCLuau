@@ -8,6 +8,11 @@ SPDX-PackageSupplier = "Jonathan Coates <git@squiddev.cc>"
 SPDX-PackageDownloadLocation = "https://github.com/cc-tweaked/cc-tweaked"
 
 [[annotations]]
+path = ["docs/evidence/M1-20261015/**"]
+SPDX-FileCopyrightText = "2026 gmoddev"
+SPDX-License-Identifier = "CC0-1.0"
+
+[[annotations]]
 SPDX-FileCopyrightText = "The CC: Tweaked Developers"
 SPDX-License-Identifier = "CC0-1.0"
 path = [

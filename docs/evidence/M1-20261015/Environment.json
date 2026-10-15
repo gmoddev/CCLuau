@@ -1,0 +1,23 @@
+{
+    "CapturedUtc":  "2026-10-15T07:27:31.7832320Z",
+    "HostName":  "HOSTPC",
+    "OS":  "Microsoft Windows 11 Pro",
+    "OSVersion":  "10.0.26200",
+    "Architecture":  "AMD64",
+    "LogicalProcessors":  24,
+    "PhysicalMemoryBytes":  34282344448,
+    "FreeMemoryKiB":  18020616,
+    "JavaCommand":  "C:\\Program Files\\Common Files\\Oracle\\Java\\javapath\\java.exe",
+    "ExistingJdks":  [
+                         "jdk-17",
+                         "jdk-21"
+                     ],
+    "GradleWrapper":  "9.7.1",
+    "RequiredJava":  25,
+    "ObservedJava":  "21.0.8+12-LTS-250",
+    "Workers":  2,
+    "Workspace":  "C:\\Sandbox\\Codex\\Workspaces\\CCLuau",
+    "Cache":  "C:\\Sandbox\\Codex\\Cache\\CCLuau\\Gradle",
+    "LogRoot":  "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015",
+    "NoInteractiveClients":  true
+}

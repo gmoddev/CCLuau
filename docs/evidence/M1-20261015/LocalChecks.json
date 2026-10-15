@@ -1,0 +1,26 @@
+{
+    "EvidenceKind": "ToolingOnly",
+    "Date": "2026-10-15",
+    "Checks": [
+        {
+            "Command": "python tools/TestRuntimeInventory.py",
+            "Status": "PASS",
+            "Result": "1 unittest with 4 subtests; synthetic data only, no VM executed"
+        },
+        {
+            "Command": "python tools/InventoryApis.py --check",
+            "Status": "PASS",
+            "Result": "231 native declaration/alias rows unchanged"
+        },
+        {
+            "Command": "System.Management.Automation.Language.Parser.ParseFile(tools/RunBaseline.ps1)",
+            "Status": "PASS",
+            "Result": "No PowerShell syntax errors"
+        },
+        {
+            "Command": "git diff --check",
+            "Status": "PASS",
+            "Result": "No whitespace errors"
+        }
+    ]
+}

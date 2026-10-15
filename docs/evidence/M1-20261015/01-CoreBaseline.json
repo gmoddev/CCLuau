@@ -1,0 +1,9 @@
+{
+    "Command":  "gradlew.bat --no-daemon --max-workers=2 --configure-on-demand :core:assemble :core:test",
+    "ExitCode":  1,
+    "ElapsedSeconds":  25.838316499999998,
+    "Source":  "e0c7bf84aba7a506a4fe2aa243c4b39eb319518b",
+    "Workspace":  "C:\\Sandbox\\Codex\\Workspaces\\CCLuau",
+    "GradleUserHome":  "C:\\Sandbox\\Codex\\Cache\\CCLuau\\Gradle",
+    "Workers":  2
+}

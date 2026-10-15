@@ -72,3 +72,24 @@ tests. Do not present CSV rows as globally callable functions.
 
 No existing self/Enum/service facade or villager offer query was found in the
 reviewed baseline. These remain additive future features, not renamed stock APIs.
+
+## M1 executable capture (2026-10-15)
+
+The new core `BaselineTest.RuntimeInventoryAndEntrypoints` boots the real BIOS and
+captures exported methods from the resulting Lua environment into
+`projects/core/build/tmp/testFiles/baseline/CoreRuntimeInventory.json`. It also
+checks shell argument boundaries and success/error behavior separately from
+os.run. No capture has been produced yet: compilation is blocked by the remote
+JDK requirement. An absent report is not an empty or passing runtime inventory.
+
+After running the test, compare the observed exports against the existing census:
+
+```text
+python tools/ValidateRuntimeInventory.py projects/core/build/tmp/testFiles/baseline/CoreRuntimeInventory.json
+```
+
+The comparator checks native core API method names, including declared spelling
+aliases and inherited TermMethods/RedstoneMethods. It treats missing APIs/methods
+as incomplete coverage. It does not qualify signatures, device/peripheral methods,
+loader registration, or behavior. Those remain separate tests and evidence gates.
+Its negative-path unit check uses synthetic data and is tooling evidence only.

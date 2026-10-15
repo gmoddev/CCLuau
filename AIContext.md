@@ -3,7 +3,7 @@ SPDX-License-Identifier: MPL-2.0 -->
 
 # CCLuau project context
 
-Updated 2026-10-12. Repository: https://github.com/gmoddev/CCLuau.
+Updated 2026-10-15. Repository: https://github.com/gmoddev/CCLuau.
 Target: Minecraft 26.3, Fabric and NeoForge. The Gradle project remains named
 `forge` for the NeoForge loader; upstream architecture prose still says Forge.
 Baseline: `a95dbe739f99e47a399d120839177e77ac861896` on upstream `mc-26.3`.
@@ -13,9 +13,18 @@ Baseline: `a95dbe739f99e47a399d120839177e77ac861896` on upstream `mc-26.3`.
 Fork and source baseline initialized. Static review of lifecycle, VM boundary,
 API registration, ROM entrypoints, movement authority, build/test layout and
 licenses completed. Runtime source, mod IDs, dependencies and saves unchanged.
-Baseline compilation, unit tests, GameTests and live loader behavior are NOT YET
-VERIFIED. No Luau VM, launcher, injected facade, or villager service is implemented.
-The first implementation milestone is the stock API/behavior baseline.
+M1 execution was attempted on dockerbox (Windows 11 x64, two workers). Gradle 9.7.1
+downloaded successfully, but stopped before project compilation: installed Java is
+21, required Java is 25, and daemon toolchain provisioning has no Windows x64 URL.
+M1 is BLOCKED and unqualified. No Java/ROM/GameTests have executed. See the dated
+qualification evidence; an existing or approved portable JDK 25 is needed to resume.
+
+Test-only BaselineTest now covers BIOS/runtime exports, shell/os.run, event filters
+and termination, async main-thread calls, fresh-host filesystem persistence, and
+reboot/unload lifecycle hooks. Turtle_Test has a dedicated queue/FIFO fixture.
+These additions are uncompiled and unexecuted, not baseline passes. Production
+execution semantics and dependency versions remain unchanged. No Luau VM,
+launcher, injected facade, or villager service is implemented. Do not proceed to M2.
 
 ## Accepted direction
 

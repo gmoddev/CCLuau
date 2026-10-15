@@ -1,0 +1,22 @@
+{
+    "Stage":  "Core",
+    "Command":  "gradlew.bat --no-daemon --max-workers=2 --console=plain --configure-on-demand :core:assemble :core:test",
+    "Source":  "e0c7bf84aba7a506a4fe2aa243c4b39eb319518b",
+    "Dirty":  [
+                  " M projects/common/src/testMod/kotlin/dan200/computercraft/gametest/Turtle_Test.kt",
+                  "?? projects/common/src/testMod/resources/data/cctest/structure/turtle_test.baseline_queue.snbt",
+                  "?? projects/core/src/test/java/dan200/computercraft/core/computer/BaselineTest.java",
+                  "?? tools/RunBaseline.ps1"
+              ],
+    "Workspace":  "C:\\Sandbox\\Codex\\Workspaces\\CCLuau",
+    "GradleUserHome":  "C:\\Sandbox\\Codex\\Cache\\CCLuau\\Gradle",
+    "JavaHome":  null,
+    "JavaToolOptions":  "-Djava.awt.headless=true -XX:ActiveProcessorCount=2 -XX:ErrorFile=C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\hs_err_pid%p.log",
+    "HostName":  "HOSTPC",
+    "Workers":  2,
+    "ExitCode":  1,
+    "TimedOut":  false,
+    "ElapsedSeconds":  1.049543,
+    "Stdout":  "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T072645061Z-Core.stdout.log",
+    "Stderr":  "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T072645061Z-Core.stderr.log"
+}
