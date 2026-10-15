@@ -11,6 +11,7 @@ import dan200.computercraft.api.detail.ComponentDetailProvider
 import dan200.computercraft.api.detail.VanillaDetailRegistries
 import dan200.computercraft.api.lua.ObjectArguments
 import dan200.computercraft.api.turtle.ITurtleUpgrade
+import dan200.computercraft.api.turtle.TurtleCommandResult
 import dan200.computercraft.api.turtle.TurtleSide
 import dan200.computercraft.api.upgrades.UpgradeData
 import dan200.computercraft.core.apis.PeripheralAPI
@@ -63,6 +64,37 @@ import java.util.concurrent.CopyOnWriteArrayList
 import kotlin.time.Duration.Companion.milliseconds
 
 class Turtle_Test {
+    /** Pin the existing queue's >16 guard and FIFO execution without changing it. */
+    @GameTest(timeoutTicks = 400)
+    fun Baseline_queue(Helper: GameTestHelper) = Helper.sequence {
+        val Executed = CopyOnWriteArrayList<Int>()
+        val Position = BlockPos(2, 1, 2)
+        thenExecute {
+            val Device = Helper.getBlockEntity(Position, TurtleBlockEntity::class.java)
+            val Brain = Device.access
+            for (Index in 0..16) {
+                val Accepted = Brain.executeCommand {
+                    Executed.add(Index)
+                    TurtleCommandResult.success()
+                }
+                assertNotNull(Accepted.callback, "Each of the first 17 queued commands should be accepted")
+            }
+            val Rejected = Brain.executeCommand {
+                fail("Rejected command must never execute")
+                TurtleCommandResult.success()
+            }
+            assertArrayEquals(arrayOf(false, "Too many ongoing turtle commands"), Rejected.result)
+        }
+        thenWaitUntil { assertEquals((0..16).toList(), Executed) }
+        thenExecute {
+            val Device = Helper.getBlockEntity(Position, TurtleBlockEntity::class.java)
+            assertEquals(31, Device.computerID)
+            assertEquals("turtle_test.baseline_queue", Device.label)
+            assertEquals(80, Device.access.fuelLevel)
+            Helper.assertContainerExactly(Position, listOf(ItemStack(Items.DIRT, 32)))
+        }
+    }
+
     @GameTest
     fun Unequip_refreshes_peripheral(helper: GameTestHelper) = helper.sequence {
         thenOnComputer {

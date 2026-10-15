@@ -1,0 +1,21 @@
+{
+    DataVersion: 2975,
+    size: [5, 5, 5],
+    data: [
+        {
+            pos: [2, 1, 2],
+            state: "computercraft:turtle_normal{facing:south,waterlogged:false}",
+            nbt: {
+                ComputerId: 31,
+                Fuel: 80,
+                Items: [{Count: 32b, Slot: 0b, id: "minecraft:dirt"}],
+                Label: "turtle_test.baseline_queue",
+                On: 0b,
+                Slot: 0,
+                id: "computercraft:turtle_normal"
+            }
+        }
+    ],
+    entities: [],
+    palette: ["computercraft:turtle_normal{facing:south,waterlogged:false}"]
+}

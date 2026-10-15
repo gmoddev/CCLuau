@@ -34,3 +34,6 @@
 /.vscode
 *.launch
 /node_modules
+
+# Python qualification tooling
+__pycache__/
