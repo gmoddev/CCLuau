@@ -1,0 +1,20 @@
+[
+  {
+    "Method": "Chest_contains_disk",
+    "Source": "projects/common/src/testMod/kotlin/dan200/computercraft/gametest/Loot_Test.kt",
+    "UnchangedFromPinnedUpstream": true,
+    "MethodBodySha256": "4f7ac9acbe74167e152f3095ebfd4b71b09b02d7d0843c95eb552d2463e0591c"
+  },
+  {
+    "Method": "Brewing_stand_item_limit",
+    "Source": "projects/common/src/testMod/kotlin/dan200/computercraft/gametest/Inventory_Test.kt",
+    "UnchangedFromPinnedUpstream": true,
+    "MethodBodySha256": "fa78b456c90454c6856fd9e27e72193e4c8d95fe5f774ce611cdaf6c976a3399"
+  },
+  {
+    "Method": "Place_use_reach_limit",
+    "Source": "projects/common/src/testMod/kotlin/dan200/computercraft/gametest/Turtle_Test.kt",
+    "UnchangedFromPinnedUpstream": true,
+    "MethodBodySha256": "cd6bcf1eaa6d591e3c448515495bc039f7c318aaa91101d7e38d23459361022d"
+  }
+]

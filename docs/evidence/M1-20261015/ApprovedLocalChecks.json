@@ -1,0 +1,32 @@
+{
+  "Date": "2026-10-15",
+  "Scope": "Local report/tooling checks only",
+  "RuntimeInventoryUnitTests": {
+    "Status": "PASS",
+    "Unittests": 2,
+    "Subtests": 8
+  },
+  "NativeCensus": {
+    "Status": "PASS",
+    "Rows": 231
+  },
+  "LoaderExportComparisons": {
+    "Status": "PASS",
+    "Profiles": 6,
+    "CoreNames": 82,
+    "TurtleNames": 44
+  },
+  "GameTestAudit": {
+    "Status": "PARTIAL",
+    "ExitCode": 1,
+    "Reason": "Optional executed failures, not an auditor crash"
+  },
+  "SourceProvenance": {
+    "Status": "PASS",
+    "MatchingTestedFiles": 9
+  },
+  "ChangedDocumentLinks": {
+    "Status": "PASS",
+    "Count": 48
+  }
+}

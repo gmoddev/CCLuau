@@ -1,0 +1,29 @@
+{
+  "Stage": "GameTests",
+  "Command": "gradlew.bat --no-daemon --max-workers=2 --console=plain :fabric:runGametest :forge:runGametest",
+  "Source": "b334f15d78e15180b11fb0d0d78c9672a3a8a5bf",
+  "Dirty": [
+    " M projects/common/src/testMod/kotlin/dan200/computercraft/gametest/CraftOs_Test.kt",
+    " M projects/common/src/testMod/kotlin/dan200/computercraft/gametest/Turtle_Test.kt",
+    " M projects/core/src/test/java/dan200/computercraft/core/computer/BaselineTest.java",
+    " M tools/RunBaseline.ps1",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/BaselineInventory.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.advanced.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.normal.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.turtle.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/structure/craftos_test.baseline_runtime_inventory.snbt",
+    "?? projects/fabric/.fabric/"
+  ],
+  "Workspace": "C:\\Sandbox\\Codex\\Workspaces\\CCLuau",
+  "GradleUserHome": "C:\\Sandbox\\Codex\\Cache\\CCLuau\\Gradle",
+  "JavaHome": "C:\\Sandbox\\Codex\\Tools\\CCLuau\\Temurin25\\jdk-25.0.4.1+1",
+  "JavaToolOptions": "-Djava.awt.headless=true -XX:ActiveProcessorCount=2 -XX:ErrorFile=C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\hs_err_pid%p.log",
+  "HostName": "HOSTPC",
+  "Workers": 2,
+  "ExitCode": 0,
+  "TimedOut": false,
+  "ElapsedSeconds": 57.698328499999995,
+  "Stdout": "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T075753787Z-GameTests.stdout.log",
+  "Stderr": "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T075753787Z-GameTests.stderr.log",
+  "ArtifactRoot": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T075753787Z-GameTests"
+}

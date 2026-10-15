@@ -13,18 +13,36 @@ Baseline: `a95dbe739f99e47a399d120839177e77ac861896` on upstream `mc-26.3`.
 Fork and source baseline initialized. Static review of lifecycle, VM boundary,
 API registration, ROM entrypoints, movement authority, build/test layout and
 licenses completed. Runtime source, mod IDs, dependencies and saves unchanged.
-M1 execution was attempted on dockerbox (Windows 11 x64, two workers). Gradle 9.7.1
-downloaded successfully, but stopped before project compilation: installed Java is
-21, required Java is 25, and daemon toolchain provisioning has no Windows x64 URL.
-M1 is BLOCKED and unqualified. No Java/ROM/GameTests have executed. See the dated
-qualification evidence; an existing or approved portable JDK 25 is needed to resume.
+M1 is PARTIAL, not fully qualified. Its required execution-critical baseline passes
+on dockerbox (Windows 11 x64, two workers). The owner approved
+portable JDK provisioning; checksum-verified Temurin 25.0.4.1+1 is now isolated in
+the worker's Codex tools directory, with system Java/PATH unchanged. Gradle 9.7.1
+and the complete core suite pass: 1644 tests, zero failures/errors, 15 skips.
+The five focused probes pass. The full repository checks pass: 1719 Java/ROM
+tests, zero failures/errors, 15 skips. Fabric and NeoForge 26.3 builds pass and
+each headless loader runs 116 GameTests with zero required failures: Fabric has
+114 passes and 2 optional failures; NeoForge has 113 passes and 3 optional failures.
+The custom reporter encodes optional failures as skipped, so Gradle success is not
+a clean suite pass. Raw XML is audited by tools/SummarizeTests.py --gametest.
+Runtime captures from normal/advanced
+computers and normal turtles match all 82 core native names plus 44 turtle names.
 
 Test-only BaselineTest now covers BIOS/runtime exports, shell/os.run, event filters
 and termination, async main-thread calls, fresh-host filesystem persistence, and
 reboot/unload lifecycle hooks. Turtle_Test has a dedicated queue/FIFO fixture.
-These additions are uncompiled and unexecuted, not baseline passes. Production
-execution semantics and dependency versions remain unchanged. No Luau VM,
+The loader inventory, turtle queue and disk/fresh-entity serialization fixtures
+have executed successfully on both loaders. Production execution semantics and
+dependency versions remain unchanged. No Luau VM,
 launcher, injected facade, or villager service is implemented. Do not proceed to M2.
+
+Qualification is scoped: no client/interactive test, pocket/command inventory,
+complete server/world restart migration, full addon/peripheral parity, or
+stale-host-callback race proof. GameTests substitute Kotlin machines for many
+command tests; the new inventory fixture uses real Cobalt ID-0 devices. Preserve
+these limits when planning M2-M4. See Qualification.md for exact evidence and hashes.
+The unchanged optional tests fail on treasure-disk loot injection and bucket reach
+on both loaders, plus brewing-stand item limits on NeoForge. Do not fix or conceal
+these behaviors as part of a VM integration; resolve or explicitly scope them first.
 
 ## Accepted direction
 
@@ -49,7 +67,9 @@ launcher, injected facade, or villager service is implemented. Do not proceed to
 `ComputerContext.Builder` defaults to Cobalt. `ComputerExecutor` owns one machine
 and a 256-event queue, drops events during power commands, and loads `bios.lua`.
 `MachineEnvironment` carries timeout, metrics, method suppliers and host context.
-`ILuaContext` schedules world tasks and reports `task_completed` asynchronously.
+`ILuaContext` schedules world tasks and reports `task_complete` asynchronously.
+Its inherited Javadoc says `task_completed`, but LuaContext and TaskCallback use
+the singular name; the M1 executable probe confirmed the distinction.
 
 **shell.run does not simply delegate to os.run:** shell.execute calls its local
 executeProgram helper, reads source (including shebang dispatch), then calls

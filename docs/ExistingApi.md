@@ -3,9 +3,10 @@ SPDX-License-Identifier: MPL-2.0 -->
 
 # Existing API and behavior baseline
 
-This is the first milestone's static inventory. It establishes where the current
-surface lives and what must be measured before adding Luau. It is not a claim of
-complete dynamic addon coverage or a passing Minecraft build.
+This combines the original static inventory with M1's executable baseline. The
+Windows x64 core checks, both Minecraft 26.3 loader builds, and required GameTests
+pass. Optional GameTest failures remain, so M1 and broader parity are PARTIAL;
+see Qualification.md for scope and evidence.
 
 ## Surface layers
 
@@ -60,7 +61,7 @@ tests. Do not present CSV rows as globally callable functions.
 1. Boot ordinary/advanced/pocket/turtle/command computers on both loaders; record
    globals, API tables, aliases, peripheral method exports and availability policy.
 2. Capture signatures, result arity/types, nil/empty behavior, failure messages,
-   yielding behavior and emitted events. MethodResult callbacks and task_completed
+   yielding behavior and emitted events. MethodResult callbacks and task_complete
    are part of the API, not just Java implementation details.
 3. Run existing ROM and Java suites, then headless GameTests. Include file mounts,
    read-only errors, terminal redirects, peripheral detach during calls, disabled
@@ -79,8 +80,9 @@ The new core `BaselineTest.RuntimeInventoryAndEntrypoints` boots the real BIOS a
 captures exported methods from the resulting Lua environment into
 `projects/core/build/tmp/testFiles/baseline/CoreRuntimeInventory.json`. It also
 checks shell argument boundaries and success/error behavior separately from
-os.run. No capture has been produced yet: compilation is blocked by the remote
-JDK requirement. An absent report is not an empty or passing runtime inventory.
+os.run. The probe passes and its [core capture](evidence/M1-20261015/CoreRuntimeInventory.json)
+matches all 82 expected native core names. The two loader GameTest servers also
+capture actual normal/advanced computer and normal-turtle exports.
 
 After running the test, compare the observed exports against the existing census:
 
@@ -93,3 +95,28 @@ aliases and inherited TermMethods/RedstoneMethods. It treats missing APIs/method
 as incomplete coverage. It does not qualify signatures, device/peripheral methods,
 loader registration, or behavior. Those remain separate tests and evidence gates.
 Its negative-path unit check uses synthetic data and is tooling evidence only.
+
+| Host profile | Fabric 26.3 | NeoForge 26.3 | Native names matched |
+| --- | --- | --- | --- |
+| Normal computer | PASS | PASS | 82 core |
+| Advanced computer | PASS | PASS | 82 core |
+| Normal turtle | PASS | PASS | 82 core + 44 turtle |
+
+Raw captures and machine-readable comparisons are under
+[Fabric evidence](evidence/M1-20261015/Fabric/) and
+[NeoForge evidence](evidence/M1-20261015/NeoForge/). Device capability and terminal
+color observations match the fixture hardware. ROM wrappers add methods beyond
+the native census; the comparison requires every selected native name to exist,
+not equality between Java declarations and the whole ROM surface.
+
+Execution probes establish: shell.execute/os.run return execution success even
+when a chunk returns false; os.run writes into its supplied environment; shell.run
+tokenises arguments while shell.execute preserves boundaries; filtered events
+retain trailing arguments/nil arity; terminate bypasses filters and pullEventRaw
+receives it; main-thread tasks run on the designated host thread; reboot/unload
+invoke lifecycle cleanup; shutdown closes deliberately unclosed mounted channels.
+
+The actual async event is **task_complete**, despite inherited ILuaContext/LuaTask
+Javadoc spelling it task_completed. The initial new probe exposed that mismatch;
+only the probe and fork documentation were corrected. Existing runtime code and
+the CCPL API files were left unchanged.

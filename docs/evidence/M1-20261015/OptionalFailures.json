@@ -1,0 +1,42 @@
+[
+  {
+    "Loader": "Fabric",
+    "Status": "PARTIAL",
+    "Total": 116,
+    "Passed": 114,
+    "OptionalFailures": [
+      {
+        "Name": "cctest:loot_test.chest_contains_disk",
+        "Message": "Container should contain: Floppy Disk at 9502442, 6, -11047612 (relative: 2, 1, 2) on tick 0"
+      },
+      {
+        "Name": "cctest:turtle_test.place_use_reach_limit",
+        "Message": "Placed water\r\nExpected: [<true>]\r\n     but: array was [<false>, \"Cannot place item here\"] with length <2> at 9502402, 9, -11047504 (relative: 2, 4, 2) on tick 11"
+      }
+    ],
+    "RequiredFailures": [],
+    "EncodingNote": "The custom JunitTestReporter writes optional failures as skipped; these cases executed and failed."
+  },
+  {
+    "Loader": "NeoForge",
+    "Status": "PARTIAL",
+    "Total": 116,
+    "Passed": 113,
+    "OptionalFailures": [
+      {
+        "Name": "cctest:loot_test.chest_contains_disk",
+        "Message": "Container should contain: Floppy Disk at 264346, 6, -10123539 (relative: 2, 1, 2) on tick 0"
+      },
+      {
+        "Name": "cctest:inventory_test.brewing_stand_item_limit",
+        "Message": "Slot #1 has limit of 1\r\nExpected: [<1>]\r\n     but: array was [<0L>]with element <0> was <0L> at 264326, 6, -10123539 (relative: 2, 1, 2) on tick 2"
+      },
+      {
+        "Name": "cctest:turtle_test.place_use_reach_limit",
+        "Message": "Placed water\r\nExpected: [<true>]\r\n     but: array was [<false>, \"Cannot place item here\"] with length <2> at 264366, 9, -10123443 (relative: 2, 4, 2) on tick 3"
+      }
+    ],
+    "RequiredFailures": [],
+    "EncodingNote": "The custom JunitTestReporter writes optional failures as skipped; these cases executed and failed."
+  }
+]

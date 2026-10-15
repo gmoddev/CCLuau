@@ -1,0 +1,20 @@
+{
+  "Stage": "Focused",
+  "Command": "gradlew.bat --no-daemon --max-workers=2 --console=plain --configure-on-demand :core:test --tests dan200.computercraft.core.computer.BaselineTest",
+  "Source": "b334f15d78e15180b11fb0d0d78c9672a3a8a5bf",
+  "Dirty": [
+    " M projects/core/src/test/java/dan200/computercraft/core/computer/BaselineTest.java",
+    " M tools/RunBaseline.ps1"
+  ],
+  "Workspace": "C:\\Sandbox\\Codex\\Workspaces\\CCLuau",
+  "GradleUserHome": "C:\\Sandbox\\Codex\\Cache\\CCLuau\\Gradle",
+  "JavaHome": "C:\\Sandbox\\Codex\\Tools\\CCLuau\\Temurin25\\jdk-25.0.4.1+1",
+  "JavaToolOptions": "-Djava.awt.headless=true -XX:ActiveProcessorCount=2 -XX:ErrorFile=C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\hs_err_pid%p.log",
+  "HostName": "HOSTPC",
+  "Workers": 2,
+  "ExitCode": 1,
+  "TimedOut": false,
+  "ElapsedSeconds": 31.9847254,
+  "Stdout": "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T074152180Z-Focused.stdout.log",
+  "Stderr": "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T074152180Z-Focused.stderr.log"
+}

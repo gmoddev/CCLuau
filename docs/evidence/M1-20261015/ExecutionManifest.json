@@ -1,0 +1,105 @@
+{
+  "Status": "PARTIAL",
+  "M1FullyQualified": false,
+  "RequiredExecutionMatrixPassed": true,
+  "SourceCommit": "f5747ddd1b3b30165f4903c92d86cfc1af9edd11",
+  "TestedBaseCommit": "b334f15d78e15180b11fb0d0d78c9672a3a8a5bf",
+  "TestedInputs": {
+    "projects/common/src/testMod/kotlin/dan200/computercraft/gametest/CraftOs_Test.kt": "663d275ba2d6e000c2fd4b3ad22ae8fab679cb9dc4b25455efdfbbdc537edfa7",
+    "projects/common/src/testMod/kotlin/dan200/computercraft/gametest/Turtle_Test.kt": "9e3caf239b4e7fd578e4744d6967251ac551fafe6bd16cf74167f36cb5504746",
+    "projects/core/src/test/java/dan200/computercraft/core/computer/BaselineTest.java": "1320b35ea1731e087523a1618ac70e29f16296e9bf4c0e7a5d0c9f78af2a1694",
+    "tools/RunBaseline.ps1": "983b0885ff7580bc57169b1159455f94667397d335d990ae88686727846ecd16",
+    "projects/common/src/testMod/resources/data/cctest/computer/tests/BaselineInventory.lua": "93f17b297ccae64b79860f18405d78c4f9f4ab0565c4e4bb62efcb9dcb2d62f5",
+    "projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.advanced.lua": "f1ac555f449a2c108af98963aa8e9370d369b64d65ea3d10df40ce7c17a68067",
+    "projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.normal.lua": "ab5d0c83e79bc2f1f0e2007c2d4091c92611a1792fc554fd37deaf9de16a1952",
+    "projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.turtle.lua": "41e244e00b254769e12b6f7b3cb2324ac8ca23c06db4f361a3b3c9a5d0d8d05d",
+    "projects/common/src/testMod/resources/data/cctest/structure/craftos_test.baseline_runtime_inventory.snbt": "a75cb573dc5262f5d715181c75a5f42a6ced7b4ade0926f6ab3103d50ce1d70f"
+  },
+  "GeneratedCacheOutput": {
+    "projects/fabric/.fabric/processedMods/placeholder-api-3.2.0+26.3-cd6e08b82294c9ec.jar": "d9a5351b42a8d79cfc2e7f2a471472f9e4dff3b13874c8d420dbb93600b91a85"
+  },
+  "AnalysisTools": {
+    "tools/InventoryApis.py": "4f2fcb74f76f6cd18a1d97d3447b7662588602b7920e4c926e09fcf47c246cf1",
+    "tools/ValidateRuntimeInventory.py": "14f9c14d3e421f583fb1ec449d95511dde28a46e1d6413a616d12c1e69e8e309",
+    "tools/SummarizeTests.py": "778f58e8d0aa71e47b17ce4ef43f0d2e6895ab7f52c1088887d8c90a537928f7",
+    "tools/TestRuntimeInventory.py": "fffc2119d16a2d743f21f6282f805012f7bbca0876b29684f96ffa420bf6be23"
+  },
+  "CoreTests": {
+    "Total": 1644,
+    "Passed": 1629,
+    "Skipped": 15,
+    "Failed": 0
+  },
+  "RepositoryChecks": {
+    "Total": 1719,
+    "Passed": 1704,
+    "Skipped": 15,
+    "Failed": 0
+  },
+  "GameTests": {
+    "Fabric": {
+      "Total": 116,
+      "Passed": 114,
+      "OptionalFailures": 2,
+      "RequiredFailures": 0
+    },
+    "NeoForge": {
+      "Total": 116,
+      "Passed": 113,
+      "OptionalFailures": 3,
+      "RequiredFailures": 0
+    }
+  },
+  "EvidenceEncoding": "UTF-8 JSON metadata, canonical LF repository text; XML content preserved except normalized line endings; original worker byte hashes retained separately",
+  "EvidenceFiles": {
+    "01-CoreBaseline.json": "104c0e013819fa459a4e75320e75faef0a9eabe817abd3edd52fbfbbced152c6",
+    "01-CoreBaseline.log": "3cc12424e7f1e1e40694705dafd22e67985b256f3bce398590617ca6e684c649",
+    "20261015T072645061Z-Core.json": "31abd96bf8c32e741c3c68f55663adc88f697e0844131412db753297ec318190",
+    "20261015T072645061Z-Core.stderr.log": "b4009ba63014bec8573b3c25a0c7eb2629347e881e82123f16ef07182c31afb9",
+    "20261015T072645061Z-Core.stdout.log": "1bb69f77aa034bc27a15322a516e6e991ea8b6374f6cb27e1fa6441ea9be104b",
+    "20261015T073546571Z-Core.json": "3938ab2cde67ec7a6442943a52012611af595f8c1bc659ceda77e863ac817ce6",
+    "20261015T074152180Z-Focused.json": "4c1209b042fec8844c3cef35abf574807b88f5a29274076d34e020f2c1c22b52",
+    "20261015T074304893Z-Focused.json": "366818c11d431116444d15cbfaa758f4ec2191ba5e34754c884b3400cd6f1a00",
+    "20261015T074351550Z-Core.json": "51ce1355d0b928e96fca2510a7cbd560b136207c1c4bd6dc6ddeb4208de88898",
+    "20261015T074552014Z-Loaders.json": "b6a21a8da00beaa5cc14a0c1233894087d2fb3e7e1934502a06a7e8ac5c44e4f",
+    "20261015T075046549Z-Checks.json": "455e3638890b4d8c1171a0d7b77770cd2dfe31d4e0fa039c553ce221b914bc36",
+    "20261015T075336581Z-Checks.json": "d22946e4e6460220bf759b23607b7d4b2dcb9961f75fb2e7f65f9eddf3efdae0",
+    "20261015T075621460Z-GameTests.json": "e58a095ff6ee2249839ed004eef7eb2d7fbe87567d86c72dec00ecd86a7a2952",
+    "20261015T075753787Z-GameTests.json": "406e0c98111ce19e47505f476c7d16cda03841aa4e630e603730a984d78af33f",
+    "20261015T075954183Z-Checks.json": "acfa69624d3500c0ef201ceb17e1228f210b889fc558b974196e16ee6235c2ff",
+    "ApprovedLocalChecks.json": "1e1a8c5a930588ff2256a5443344a6ddd61fdd1c14cf9df28b690225e6ffc6f9",
+    "ApprovedRunRawHashes.json": "587fcec9e15e6d171cdb24b3f8010842e6b48317c74172c37d7a0f26210c7457",
+    "BuiltJars.json": "161d87da80eeaf47e523651f0a79b8d6dff8fc919021a6d810c81098a07e2d75",
+    "ChecksSuiteSummary.json": "118fbc6bf6d0cdecc92977cb3047064cf0b325f21d53bda561a5f5c533e9198d",
+    "ConfigurationsAndFixtures.json": "d7ace8e4e1124bd1f85ef5450f427d907624c6f8348a8ac9536aeb661d101a9e",
+    "CoreBaselineTest.xml": "654670c3052f7f2e8c2f3ba1da549859037afb972c420035cd15180fcfc2109a",
+    "CoreRuntimeComparison.json": "cc10e4f71fb2990c9720535842ab38809b5619869e4aa3a457b79e6b2cbdfa03",
+    "CoreRuntimeInventory.json": "06c85c1a67e1eeacab0b46221ac74d8e8b1cc0427947fcee9f777799d8889d59",
+    "CoreSuiteSummary.json": "6a2e67639e99afb76acbdae8a32acd72888d336f418b5aaafefd21a4884641b1",
+    "Environment.json": "4c85f89081ee5524415662431fe58825f51eea94ec3a45e62321c86104944095",
+    "EventProbeDiagnostic.xml": "ceaa1079030eb7740a5dcb926cefb977ee65a588702868f901b3a8f275dcce0d",
+    "Fabric/craftos_test.baseline_runtime_inventory.advanced.Comparison.json": "cc10e4f71fb2990c9720535842ab38809b5619869e4aa3a457b79e6b2cbdfa03",
+    "Fabric/craftos_test.baseline_runtime_inventory.advanced.json": "86d02d532d5d6df48105b8840eb7689a1e0d83832a1c62bcd41f130e2ed5173c",
+    "Fabric/craftos_test.baseline_runtime_inventory.normal.Comparison.json": "7fb9670c55a0cba45f378d7bb1af5264519e9a39eeb69b1bd374df11a1698964",
+    "Fabric/craftos_test.baseline_runtime_inventory.normal.json": "de5435e99ec1a5d2d094f790eb7303dece50bca989b7efed18bb1af5adeb7314",
+    "Fabric/craftos_test.baseline_runtime_inventory.turtle.Comparison.json": "6906ddacba3e64d4b977417bdef4a711a873eaae945704f7a52e5106f765921b",
+    "Fabric/craftos_test.baseline_runtime_inventory.turtle.json": "91da737b2ee245b6ecd489d28c4d552ca654d14caffb329ac79a160b6645ca01",
+    "Fabric/GameTests.xml": "e2702332e70ca58ea5994efa2390072b52d51c15952be60b5b5e81e81e3eb2e1",
+    "GameSuiteSummary.json": "0c5aecfb2d8f7af258c1a7b288e3dee56161ddff64b8d91940f6d80837d069de",
+    "GameTestAudit.json": "e0764e9cfc34db23158a0c88382862f22f82611855e885657cc4e9ee84ca6617",
+    "Jdk25.json": "4cffb50bedcab05c9344c37954f6e1b0b0e614a536a6f4e0c4b45c5ab92d6a11",
+    "LocalChecks.json": "c175507b17d18d134ad68cffb8fbf4afa6242e35b7e8f1e354930197b71fe3c5",
+    "Manifest.json": "5640f51f27bdf1925c092a1d3699b2d8e22d9e57a57015da78753e562c63d7a2",
+    "NeoForge/craftos_test.baseline_runtime_inventory.advanced.Comparison.json": "cc10e4f71fb2990c9720535842ab38809b5619869e4aa3a457b79e6b2cbdfa03",
+    "NeoForge/craftos_test.baseline_runtime_inventory.advanced.json": "86d02d532d5d6df48105b8840eb7689a1e0d83832a1c62bcd41f130e2ed5173c",
+    "NeoForge/craftos_test.baseline_runtime_inventory.normal.Comparison.json": "7fb9670c55a0cba45f378d7bb1af5264519e9a39eeb69b1bd374df11a1698964",
+    "NeoForge/craftos_test.baseline_runtime_inventory.normal.json": "de5435e99ec1a5d2d094f790eb7303dece50bca989b7efed18bb1af5adeb7314",
+    "NeoForge/craftos_test.baseline_runtime_inventory.turtle.Comparison.json": "6906ddacba3e64d4b977417bdef4a711a873eaae945704f7a52e5106f765921b",
+    "NeoForge/craftos_test.baseline_runtime_inventory.turtle.json": "91da737b2ee245b6ecd489d28c4d552ca654d14caffb329ac79a160b6645ca01",
+    "NeoForge/GameTests.xml": "a02dedcd2f12d4b198ac59371b11a94835f9d526f3fcda07371d35901af396b9",
+    "OptionalFailureProvenance.json": "f97d427315a581140760f51ce05d7810e8851532912d5f8cdcb6ec2c9ecbb3d3",
+    "OptionalFailures.json": "7eb0dfe7b7e9707bb05649f8628bc384c4f37458a5a4749d1c5e8b828fb86f9a",
+    "RawRemoteHashes.json": "bea0237b91de47d0a78bb4b4edc948cbf26a4a4a40c25822b8de67aad96fba31",
+    "TestedSource.json": "d331034180e1af48e2b438836daa74690be71237d78adda50ff02067f722c63a"
+  }
+}

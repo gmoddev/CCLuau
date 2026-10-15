@@ -1,0 +1,228 @@
+[
+  {
+    "File": "TEST-dan200.computercraft.core.apis.handles.ArrayByteChannelTest.xml",
+    "Tests": 3,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.apis.handles.BinaryReadableHandleTest.xml",
+    "Tests": 8,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.apis.handles.ByteBufferChannelTest.xml",
+    "Tests": 3,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.apis.http.NetworkUtilsTest.xml",
+    "Tests": 1,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.apis.http.options.AddressRuleTest.xml",
+    "Tests": 26,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.apis.http.TestHttpApi.xml",
+    "Tests": 9,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.asm.GeneratorTest.xml",
+    "Tests": 17,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.asm.IntCacheTest.xml",
+    "Tests": 2,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.asm.MethodTest.xml",
+    "Tests": 10,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.computer.BaselineTest.xml",
+    "Tests": 5,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.computer.ComputerTest.xml",
+    "Tests": 2,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.computer.computerthread.ComputerThreadTest.xml",
+    "Tests": 4,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.ComputerTestDelegate.xml",
+    "Tests": 1407,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 12,
+    "SkippedCases": [
+      "locates computers at random positions",
+      "n_structure_open_array_object",
+      "n_structure_100000_opening_arrays",
+      "n_number_-2.",
+      "n_number_with_leading_zero",
+      "n_number_real_without_fractional_part",
+      "n_number_neg_int_starting_with_zero",
+      "n_number_-01",
+      "n_number_0.e1",
+      "n_number_2.e+3",
+      "n_number_2.e-3",
+      "n_number_2.e3"
+    ]
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.filesystem.FileMountTest.xml",
+    "Tests": 14,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.filesystem.FileSystemTest.xml",
+    "Tests": 9,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.filesystem.JarMountTest.xml",
+    "Tests": 15,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.filesystem.MemoryMountTest.xml",
+    "Tests": 24,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 1,
+    "SkippedCases": [
+      "Can make read only"
+    ]
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.filesystem.WritableFileMountTest.xml",
+    "Tests": 13,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 2,
+    "SkippedCases": [
+      "Writing uses latest file size",
+      "Can make read only"
+    ]
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.lua.CobaltLuaTableTest.xml",
+    "Tests": 3,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.lua.errorinfo.ErrorInfoLibTest.xml",
+    "Tests": 3,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.lua.ObjectLuaTableTest.xml",
+    "Tests": 3,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.lua.VarargArgumentsTest.xml",
+    "Tests": 5,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.terminal.TerminalTest.xml",
+    "Tests": 32,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.terminal.TextBufferTest.xml",
+    "Tests": 17,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.util.SanitisedErrorTest.xml",
+    "Tests": 5,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  },
+  {
+    "File": "TEST-dan200.computercraft.core.util.StringUtilTest.xml",
+    "Tests": 4,
+    "Failures": 0,
+    "Errors": 0,
+    "Skipped": 0,
+    "SkippedCases": []
+  }
+]

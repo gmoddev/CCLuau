@@ -1,0 +1,27 @@
+{
+  "Stage": "Focused",
+  "Command": "gradlew.bat --no-daemon --max-workers=2 --console=plain --configure-on-demand :core:test --tests dan200.computercraft.core.computer.BaselineTest",
+  "Source": "b334f15d78e15180b11fb0d0d78c9672a3a8a5bf",
+  "Dirty": [
+    " M projects/common/src/testMod/kotlin/dan200/computercraft/gametest/CraftOs_Test.kt",
+    " M projects/common/src/testMod/kotlin/dan200/computercraft/gametest/Turtle_Test.kt",
+    " M projects/core/src/test/java/dan200/computercraft/core/computer/BaselineTest.java",
+    " M tools/RunBaseline.ps1",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/BaselineInventory.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.advanced.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.normal.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/computer/tests/craftos_test.baseline_runtime_inventory.turtle.lua",
+    "?? projects/common/src/testMod/resources/data/cctest/structure/craftos_test.baseline_runtime_inventory.snbt"
+  ],
+  "Workspace": "C:\\Sandbox\\Codex\\Workspaces\\CCLuau",
+  "GradleUserHome": "C:\\Sandbox\\Codex\\Cache\\CCLuau\\Gradle",
+  "JavaHome": "C:\\Sandbox\\Codex\\Tools\\CCLuau\\Temurin25\\jdk-25.0.4.1+1",
+  "JavaToolOptions": "-Djava.awt.headless=true -XX:ActiveProcessorCount=2 -XX:ErrorFile=C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\hs_err_pid%p.log",
+  "HostName": "HOSTPC",
+  "Workers": 2,
+  "ExitCode": 0,
+  "TimedOut": false,
+  "ElapsedSeconds": 20.4939255,
+  "Stdout": "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T074304893Z-Focused.stdout.log",
+  "Stderr": "C:\\Sandbox\\Codex\\Logs\\CCLuau\\M1-20261015\\20261015T074304893Z-Focused.stderr.log"
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dan200.computercraft.core.computer.BaselineTest" tests="5" skipped="0" failures="0" errors="0" timestamp="2026-10-15T07:44:21.759Z" hostname="HOSTPC" time="15.234">
+  <properties/>
+  <testcase name="EventFilteringTerminationAndMainThreadCalls()" classname="dan200.computercraft.core.computer.BaselineTest" time="1.159"/>
+  <testcase name="FilesystemAndStartupSurviveFreshHost(Path)" classname="dan200.computercraft.core.computer.BaselineTest" time="4.246"/>
+  <testcase name="RebootAndUnloadReleaseResources()" classname="dan200.computercraft.core.computer.BaselineTest" time="5.587"/>
+  <testcase name="RuntimeInventoryAndEntrypoints()" classname="dan200.computercraft.core.computer.BaselineTest" time="2.117"/>
+  <testcase name="ShutdownClosesUnclosedFilesystemHandles(Path)" classname="dan200.computercraft.core.computer.BaselineTest" time="2.121"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dan200.computercraft.core.computer.BaselineTest" tests="5" skipped="0" failures="1" errors="0" timestamp="2026-10-15T07:42:09.909Z" hostname="HOSTPC" time="12.743">
+  <properties/>
+  <testcase name="ShutdownClosesUnclosedFilesystemHandles(Path)" classname="dan200.computercraft.core.computer.BaselineTest" time="1.764"/>
+  <testcase name="EventFilteringTerminationAndMainThreadCalls()" classname="dan200.computercraft.core.computer.BaselineTest" time="11.403">
+    <failure message="java.lang.AssertionError: [Baseline:Events] Reached [BeforeEvents, AfterFilteredEvent, AfterTerminate, AfterRawTerminate, AfterMainThread]" type="java.lang.AssertionError">java.lang.AssertionError: [Baseline:Events] Reached [BeforeEvents, AfterFilteredEvent, AfterTerminate, AfterRawTerminate, AfterMainThread]
+	at dan200.computercraft.core.computer.BaselineTest.EventFilteringTerminationAndMainThreadCalls(BaselineTest.java:116)
+Caused by: org.opentest4j.AssertionFailedError: Did not correctly [ assert shutdown ]
+ 1 | CraftOS 1.9                                         |
+ 2 | Holding the Ctrl and T keys terminates the running  |
+ 3 | program.                                            |
+ 4 |                                                     |
+ 5 |                                                     |
+ 6 |                                                     |
+ 7 |                                                     |
+ 8 |                                                     |
+ 9 |                                                     |
+10 |                                                     |
+11 |                                                     |
+12 |                                                     |
+13 |                                                     |
+14 |                                                     |
+15 |                                                     |
+16 |                                                     |
+17 |                                                     |
+18 |                                                     |
+19 |                                                     |
+
+	at org.junit.jupiter.api.Assertions.fail(Assertions.java:142)
+	at dan200.computercraft.core.computer.ComputerBootstrap.run(ComputerBootstrap.java:96)
+	at dan200.computercraft.core.computer.ComputerBootstrap.run(ComputerBootstrap.java:40)
+	at dan200.computercraft.core.computer.BaselineTest.EventFilteringTerminationAndMainThreadCalls(BaselineTest.java:93)
+</failure>
+  </testcase>
+  <testcase name="RuntimeInventoryAndEntrypoints()" classname="dan200.computercraft.core.computer.BaselineTest" time="1.107"/>
+  <testcase name="RebootAndUnloadReleaseResources()" classname="dan200.computercraft.core.computer.BaselineTest" time="5.607"/>
+  <testcase name="FilesystemAndStartupSurviveFreshHost(Path)" classname="dan200.computercraft.core.computer.BaselineTest" time="4.245"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

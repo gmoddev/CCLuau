@@ -1,0 +1,44 @@
+{
+  "Configurations": [
+    {
+      "Loader": "fabric",
+      "Path": "C:\\Sandbox\\Codex\\Workspaces\\CCLuau\\projects\\fabric\\run\\gametest\\config\\computercraft-server.toml",
+      "Sha256": "c914f42ed4567ab99f948699da17fa6890f259599dba1e00e70b82f6b37cc20b"
+    },
+    {
+      "Loader": "forge",
+      "Path": "C:\\Sandbox\\Codex\\Workspaces\\CCLuau\\projects\\forge\\run\\gametest\\config\\computercraft-synced.toml",
+      "Sha256": "d4995da449d5c96d24245c7108b339b729cc088b012170b3445f7f4fc1e20b3d"
+    }
+  ],
+  "Fixtures": [
+    {
+      "Name": "craftos_test.baseline_runtime_inventory.snbt",
+      "Sha256": "a75cb573dc5262f5d715181c75a5f42a6ced7b4ade0926f6ab3103d50ce1d70f"
+    },
+    {
+      "Name": "turtle_test.baseline_queue.snbt",
+      "Sha256": "e2ad82c7e270deca2d3e689cbfa6b49d8aa4ee13c93d7c951b069b64b80b64c7"
+    },
+    {
+      "Name": "turtle_test.move_obstruct.snbt",
+      "Sha256": "47b7a389d041390bc713402402a6ddc910d07b233811ee8e00dcd577e8a680ad"
+    },
+    {
+      "Name": "turtle_test.move_preserves_state.snbt",
+      "Sha256": "97bfb17522ef40039526ac6469e4b5d57ecb35083a67ff4602de6688da37a96f"
+    },
+    {
+      "Name": "turtle_test.refuel_basic.snbt",
+      "Sha256": "3b143d0f3e003ecd0172a1adb6aa9b55a158c6b5d9f90b814e9d5afb8c3b4e14"
+    },
+    {
+      "Name": "turtle_test.refuel_container.snbt",
+      "Sha256": "4c3199e723f3c02254f99b0caa3ebc4361572620ebbc818ac25fbaad5cb120ce"
+    },
+    {
+      "Name": "turtle_test.refuel_fail.snbt",
+      "Sha256": "26396aeb741446885839d2b1c069525b46e49e37076336a4d39cabf5e1e5b330"
+    }
+  ]
+}

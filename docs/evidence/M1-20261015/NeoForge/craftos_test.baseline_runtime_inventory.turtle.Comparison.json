@@ -1,0 +1,19 @@
+{
+  "Matched": 126,
+  "Missing": {},
+  "ObservedCounts": {
+    "fs": 20,
+    "http": 7,
+    "os": 24,
+    "parallel": 2,
+    "peripheral": 9,
+    "redstone": 14,
+    "settings": 10,
+    "shell": 18,
+    "term": 29,
+    "textutils": 16,
+    "turtle": 44
+  },
+  "Scope": "Observed core API names and TurtleAPI when Device=Turtle; signatures, behavior, other devices and handles excluded",
+  "Status": "PASS"
+}

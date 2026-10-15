@@ -1,0 +1,47 @@
+[
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\core-api-jars\\cc-tweaked-26.3-core-api-1.120.3.jar",
+    "Bytes": 32666,
+    "Sha256": "6906a2a1955b4c7f553109d08bcfce0c427856c39104421b2846462bd0ffa342"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\core-jars\\cc-tweaked-26.3-core-1.120.3-sources.jar",
+    "Bytes": 486116,
+    "Sha256": "d07fa726c40b8daec93e505d25b7e36b97f32169b7d44221dda3c0a3c55498b6"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\core-jars\\cc-tweaked-26.3-core-1.120.3-test-fixtures.jar",
+    "Bytes": 64550,
+    "Sha256": "c5cfb71804e742d2d276c264dbb9322f38e039cf6148e87399e758e240e887ac"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\core-jars\\cc-tweaked-26.3-core-1.120.3.jar",
+    "Bytes": 611244,
+    "Sha256": "a6cc74e15d3ad080a6d9f60344df7b53307d76d7fc3ea68110bd4de203dcf04e"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\fabric-jars\\cc-tweaked-26.3-fabric-1.120.3-sources.jar",
+    "Bytes": 1489579,
+    "Sha256": "200a50ddc0381e5bbcbdd6a8e0372a206b3f33a647c98860daf247d6a7ac5b93"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\fabric-jars\\cc-tweaked-26.3-fabric-1.120.3.jar",
+    "Bytes": 3048061,
+    "Sha256": "41bdbedd97671236d53c73d17fda258e26b2704bab357853fc33fababe7efb70"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\forge-jars\\cc-tweaked-26.3-forge-1.120.3-sources.jar",
+    "Bytes": 1482291,
+    "Sha256": "687c1b0ab03f4e9b4892aedf207b1cbbbc84add01192ee2c0c64fccf4e2af98c"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\forge-jars\\cc-tweaked-26.3-forge-1.120.3.jar",
+    "Bytes": 2629177,
+    "Sha256": "2c7989c07ee37a1e20daee4674569caae3ee4ee7c4ee16718b7520ff085d0c5b"
+  },
+  {
+    "File": "C:\\Sandbox\\Codex\\Artifacts\\CCLuau\\M1-20261015\\20261015T074552014Z-Loaders\\lints-jars\\cc-tweaked-26.3-lints-1.120.3.jar",
+    "Bytes": 39969,
+    "Sha256": "ac06f24aff3c1ff4b7a5d8366b77f1cd15daa7103e1892c3834c42fb4de64f71"
+  }
+]

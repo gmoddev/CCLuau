@@ -16,6 +16,9 @@ projects/common/src/testMod/resources/data/cctest/structures/* linguist-generate
 *.md     eol=lf diff=markdown
 *.txt    eol=lf
 
+# Keep qualification evidence hashes stable across Windows and other checkouts.
+docs/evidence/M1-20261015/** text=auto eol=lf
+
 *.png binary
 *.jar binary
 *.dfpwm binary
