@@ -13,7 +13,12 @@ Baseline: `a95dbe739f99e47a399d120839177e77ac861896` on upstream `mc-26.3`.
 Fork and source baseline initialized. Static review of lifecycle, VM boundary,
 API registration, ROM entrypoints, movement authority, build/test layout and
 licenses completed. Runtime source, mod IDs, dependencies and saves unchanged.
-M1 is PARTIAL, not fully qualified. Its required execution-critical baseline passes
+M1 is PARTIAL, not fully qualified. **M2 is PARTIAL, static design only**;
+Architecture/Runtime.md now specifies the provisional generic repository,
+primary official Luau backend candidate, ABI v1, generation-fenced host
+protocol, interruption/containment limits and standalone M3 qualification.
+The M2 review used branch source 1560215e5b66d1d7efebcba4bd14651856f48196;
+no new runtime repo, executable VM, JNI or Minecraft integration was created. Its required execution-critical baseline passes
 on dockerbox (Windows 11 x64, two workers). The owner approved
 portable JDK provisioning; checksum-verified Temurin 25.0.4.1+1 is now isolated in
 the worker's Codex tools directory, with system Java/PATH unchanged. Gradle 9.7.1
@@ -33,7 +38,8 @@ reboot/unload lifecycle hooks. Turtle_Test has a dedicated queue/FIFO fixture.
 The loader inventory, turtle queue and disk/fresh-entity serialization fixtures
 have executed successfully on both loaders. Production execution semantics and
 dependency versions remain unchanged. No Luau VM,
-launcher, injected facade, or villager service is implemented. Do not proceed to M2.
+launcher, injected facade, or villager service is implemented. M3 standalone
+work and M4 integration need separate authorization and evidence.
 
 Qualification is scoped: no client/interactive test, pocket/command inventory,
 complete server/world restart migration, full addon/peripheral parity, or
@@ -50,9 +56,13 @@ these behaviors as part of a VM integration; resolve or explicitly scope them fi
 - Preserve the default Cobalt BIOS/shell and existing Lua contracts.
 - Opt in using first-line `--lang luau`; no directive means Lua. Headers are a
   future launcher feature, not supported by this initial fork setup.
-- Develop or fork the VM in a separate repository, with generic bridge contracts
-  independently authored. Official Luau is the feasibility candidate, not a
-  selected dependency or an implementation commitment.
+- Recommended separate generic repository name: gmoddev/LuauRuntime (not
+  created), with independently authored native ABI v1 and MIT wrapper provenance.
+  Official Roblox Luau is the primary backend for M3 evaluation; observed
+  upstream research SHA 8387cfb461b38ce09e37c1e4c2811538ef1bf5cb is **not**
+  a qualified production pin, selected binary or implementation commitment.
+  Prefer isolated native helper supervision for M4; no in-process fatal safety
+  guarantee is implied by using JNI or a separate source repository.
 - Add PascalCase Luau device/service APIs after parity qualification. `self` and
   `computer` are fixed injected names. Plain computers get a computer device;
   turtle methods exist only on turtle devices. `computer:GetService("Villagers")`
@@ -104,7 +114,11 @@ This repository records decisions and corrected source findings rather than
 copying the attachment wholesale. Its research-only status does not override the
 owner's explicit authorization to fork and initialize this project.
 
-Still open: VM repository name/license and backend choice; hardware for villager
-inspection; non-mutating access to already-generated offers on MC 26.3; JNI yield
-and cancellation behavior; multishell ownership; precise parity scope; optional
-native artifact packaging and combined-distribution license interpretation.
+Still open: creation/approval of proposed VM repository and final MIT wrapper
+license; qualified upstream Luau SHA and native ABI implementation; yield,
+interrupt, cancellation, C continuation/debug-name lifetimes, compiler time/
+heap behavior, OS helper containment and both-platform 1,000-lifecycle M3;
+hardware for villager inspection and non-mutating existing offers on MC 26.3;
+multishell/terminal scope, stale main-thread callback proof, precise device
+parity, native artifact packaging and combined-distribution CCPL §5 legal
+interpretation. No release authorization.
