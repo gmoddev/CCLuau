@@ -160,8 +160,8 @@ repository as a public requirement.
 **V1 value envelope**, little endian and length-prefixed, uses tags NIL,
 FALSE, TRUE, FINITE_F64 (IEEE-754, normalize negative zero), UTF8_STRING,
 BYTE_STRING, ARRAY, MAP and OPAQUE_CAPABILITY. Arrays carry explicit count and
-preserve nil slots/argument arity. Map keys are unique nonempty UTF-8 strings
-or exact signed 32-bit integers; reject unsupported keys and duplicate canonical
+preserve nil slots/argument arity. Map keys are unique UTF-8 strings **including the empty string**, or
+exact signed 32-bit integers; reject unsupported keys and duplicate canonical
 keys. Capability tokens are opaque uint64 IDs, scoped to a session, type,
 permitted operations and revocation generation. The host resolves them; no raw
 Java/OS/VM pointer values. Maps encode keys in deterministic order and all lengths
@@ -178,6 +178,23 @@ A hostile value must fail predictably without exceeding recursion/native stack.
 No cross-VM closure, Lua registry handle, table reference, metatable or module
 cache is transported.
 
+**Exact v1 encoding rule:** after each containing frame's checked length, each
+value is [Tag:U8][Body], where 0x00=NIL (zero bytes), 0x01=FALSE (zero),
+0x02=TRUE (zero), 0x03=FINITE_F64 (eight little-endian bytes),
+0x04=UTF8_STRING and 0x05=BYTE_STRING (U32LE byte count then bytes),
+0x06=ARRAY (U32LE element count followed by that many encoded values),
+0x07=MAP (U32LE pair count, each followed by key/value), and
+0x08=OPAQUE_CAPABILITY (U64LE token plus U32LE capability type and
+U32LE revocation epoch). MAP keys are encoded with 0x04 or reserved 0x09
+SIGNED_I32_KEY (I32LE body), never with general floating-point tags.
+0x09 is invalid outside map-key position. Unknown tags, extra trailing bytes,
+non-canonical map order, non-finite numbers, ambiguous negative zero,
+oversized lengths, invalid UTF-8 and forged capability epochs are rejected.
+Do not decode untrusted bytes via a native recursive call stack; use a
+bounded explicit traversal stack. The encoding deliberately excludes graphs
+and integer values outside keys; application numbers use finite F64.
+
+
 **Host request**: Session + RequestId + OperationId + CapabilityId + typed
 value-vector + deadline. At most **one outstanding host request in v1**; the
 session transitions to WAIT_HOST and returns immediately to the supervisor.
@@ -192,7 +209,11 @@ Request cancellation before dispatch is a no-op; once an authorized world
 operation has begun, cancellation cannot undo its side effect. The result may
 be discarded without claiming the world mutation was rolled back.
 
-**Event wait**: WAIT_EVENT records an exact filter or wildcard; Luau event
+**Event wait**: an independently authored, generic AwaitEvent native primitive
+installed by the embeddable runtime yields a requested filter and produces
+WAIT_EVENT; the CCLuau adapter may expose that primitive through a later typed
+Luau API without copying stock Cobalt implementation. WAIT_EVENT records an
+exact filter or wildcard; Luau event
 delivery is explicitly selected by the CCLuau host, not directly wired to the
 shared Cobalt event queue. The actual stock asynchronous task event is
 **task_complete**, singular: LuaContext and TaskCallback use this string even
